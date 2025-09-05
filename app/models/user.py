@@ -15,7 +15,7 @@ class User(BaseModel):
     last_login = Column(DateTime(timezone=True), comment="最后登录时间")
     
     # 关联角色
-    roles = relationship("UserRole", back_populates="user")
+    roles = relationship("UserRole", back_populates="user", foreign_keys="UserRole.user_id")
     
     def __repr__(self):
         return f"<User(username='{self.username}', email='{self.email}')>"
