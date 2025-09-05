@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from app.routers import auth, users, roles
+from app.routers import auth, users, roles, permissions
 from app.database import engine
 from app.models import Base
 import logging
@@ -60,6 +60,7 @@ async def handle_src_requests(path: str):
 app.include_router(auth.router, prefix="/api/auth", tags=["认证"])
 app.include_router(users.router, prefix="/api/users", tags=["用户管理"])
 app.include_router(roles.router, prefix="/api/roles", tags=["角色管理"])
+app.include_router(permissions.router, prefix="/api/permissions", tags=["权限管理"])
 
 @app.get("/")
 async def root():
